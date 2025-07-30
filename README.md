@@ -1,51 +1,55 @@
-# FregeIntellIJPlugin
+# FregeIntelliJPlugin
 
 ![Build](https://github.com/mse-p8/FregeIntellIJPlugin/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [pluginGroup](./gradle.properties) and [pluginName](./gradle.properties), as well as the [id](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `MARKETPLACE_ID` in the above README badges. You can obtain it once the plugin is published to JetBrains Marketplace.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
-- [ ] Configure the [CODECOV_TOKEN](https://docs.codecov.com/docs/quick-start) secret for automated test coverage reports on PRs
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+This is the IntelliJ plugin for Frege! It provides IDE support for
+the [Frege programming language](https://github.com/Frege/frege/) using
+the [Frege Language Server](https://github.com/poeik/frege-ls/). 
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+It depends on the Frege Language Server version `v1.0.0` & Frege version `3.25.84`.
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+> Note 1: Make sure your Frege files are located in `./src/main/frege` or in the directory stated in the environment
+> variable `FREGE_LS_SOURCE_DIR`. The Frege Language Server uses the file system to resolve modules. Therefore, always use
+> the file path relative to `FREGE_LS_SOURCE_DIR` as module name.
+
+> Note 2 Syntax highlighting: Open Settings -> Editor -> File Types -> Recognized File Types. Search for Haskell and add
+>`*.fr` to `File name patterns:`
+
 <!-- Plugin description end -->
 
 ## Installation
 
-- Using the IDE built-in plugin system:
-  
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "FregeIntellIJPlugin"</kbd> >
-  <kbd>Install</kbd>
-  
-- Using JetBrains Marketplace:
+We currently only support manual installation. The plugin depends on the IntelliJ Language Server Protocol support.
+See [here](https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html#supported-ides) to find out which
+IDEs are supported!
 
-  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
-
-  You can also download the [latest release](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID/versions) from JetBrains Marketplace and install it manually using
+  Download the [latest release](https://github.com/poeik/FregeIntellIJPlugin/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
-- Manually:
+## Developing
 
-  Download the [latest release](https://github.com/mse-p8/FregeIntellIJPlugin/releases/latest) and install it manually using
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
+Tested with Kotlin 8.14.3, IntelliJ IDEA 2025.1.2 and Kotlin 2.2.0.
 
+### Building the source
+
+Use `./gradlew buildPlugin`. It might take a while as it downloads many Jetbrains dependencies
+
+### Running it locally
+
+Use `./gradlew runIde` to start a new IntelliJ instance with the current version of the plugin installed.
+
+### Upgrading the Frege Language Server
+
+1. Download the latest release tar [here](https://github.com/poeik/frege-ls/releases)
+2. Change the version of Frege/FregeLS
+   in [Versions.kt](/src/main/kotlin/ch/fhnw/fregeintellijplugin/lspserver/Versions.kt) and in this Readme.
+3. Commit & Push
+4. Run `./gradlew buildPlugin`
+5. Create a new GitHub Release with and upload the contents of `./build/distributions` to it
 
 ---
+
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
