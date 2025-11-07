@@ -7,7 +7,7 @@ This is the IntelliJ plugin for Frege! It provides IDE support for
 the [Frege programming language](https://github.com/Frege/frege/) using
 the [Frege Language Server](https://github.com/poeik/frege-ls/). 
 
-It depends on the Frege Language Server version `v1.0.0` & Frege version `3.25.84`.
+It depends on the Frege Language Server version `v1.0.1` & Frege version `3.25.84`.
 
 > Note 1: Make sure your Frege files are located in `./src/main/frege` or in the directory stated in the environment
 > variable `FREGE_LS_SOURCE_DIR`. The Frege Language Server uses the file system to resolve modules. Therefore, always use
@@ -29,7 +29,7 @@ IDEs are supported!
 
 ## Developing
 
-Tested with Kotlin 8.14.3, IntelliJ IDEA 2025.1.2 and Kotlin 2.2.0.
+Tested with gradle 8.14.3, IntelliJ IDEA 2025.1.2 and Kotlin 2.2.0.
 
 ### Building the source
 
