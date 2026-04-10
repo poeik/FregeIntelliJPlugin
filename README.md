@@ -7,7 +7,7 @@ This is the IntelliJ plugin for Frege! It provides IDE support for
 the [Frege programming language](https://github.com/Frege/frege/) using
 the [Frege Language Server](https://github.com/poeik/frege-ls/). 
 
-It depends on the Frege Language Server version `v1.0.1` & Frege version `3.25.84`.
+It depends on the Frege Language Server version `v1.0.2` & Frege version `3.25.84`.
 
 > Note 1: Make sure your Frege files are located in `./src/main/frege` or in the directory stated in the environment
 > variable `FREGE_LS_SOURCE_DIR`. The Frege Language Server uses the file system to resolve modules. Therefore, always use
@@ -15,6 +15,21 @@ It depends on the Frege Language Server version `v1.0.1` & Frege version `3.25.8
 
 > Note 2 Syntax highlighting: Open Settings -> Editor -> File Types -> Recognized File Types. Search for Haskell and add
 >`*.fr` to `File name patterns:`
+
+### Java interoperability
+
+#### Accessing Java files
+
+If you want to access Java files along with your Frege code make sure to put
+the Java code in `./src/main/java` or into the directory stated in the
+environment variable `FREGE_LS_JAVA_SOURCE_DIR`.
+
+#### Accessing Jars
+
+If you want to use external Jar files along with your Frege code make sure to put
+them under the `./lib` folder or into the directory stated in the
+environment variable `FREGE_LS_EXTRA_CLASSPATH`.
+
 
 <!-- Plugin description end -->
 
@@ -41,9 +56,11 @@ Use `./gradlew runIde` to start a new IntelliJ instance with the current version
 
 ### Upgrading the Frege Language Server
 
-1. Download the latest release tar [here](https://github.com/poeik/frege-ls/releases)
+1. Download the latest release tar [here](https://github.com/poeik/frege-ls/releases) and replace the version in
+   `src/main/resources/fregels`.
 2. Change the version of Frege/FregeLS
-   in [Versions.kt](/src/main/kotlin/ch/fhnw/fregeintellijplugin/lspserver/Versions.kt) and in this Readme.
+   in [Versions.kt](/src/main/kotlin/ch/fhnw/fregeintellijplugin/lspserver/Versions.kt), in this Readme and
+   in [gradle.properties](./gradle.properties).
 3. Commit & Push
 4. Run `./gradlew buildPlugin`
 5. Create a new GitHub Release with and upload the contents of `./build/distributions` to it
