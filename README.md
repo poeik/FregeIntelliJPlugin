@@ -7,7 +7,7 @@ This is the IntelliJ plugin for Frege! It provides IDE support for
 the [Frege programming language](https://github.com/Frege/frege/) using
 the [Frege Language Server](https://github.com/poeik/frege-ls/). 
 
-It depends on the Frege Language Server version `v1.0.1` & Frege version `3.25.84`.
+It depends on the Frege Language Server version `v1.0.2` & Frege version `3.25.84`.
 
 > Note 1: Make sure your Frege files are located in `./src/main/frege` or in the directory stated in the environment
 > variable `FREGE_LS_SOURCE_DIR`. The Frege Language Server uses the file system to resolve modules. Therefore, always use
@@ -41,7 +41,8 @@ Use `./gradlew runIde` to start a new IntelliJ instance with the current version
 
 ### Upgrading the Frege Language Server
 
-1. Download the latest release tar [here](https://github.com/poeik/frege-ls/releases)
+1. Download the latest release tar [here](https://github.com/poeik/frege-ls/releases) and replace the version in
+   `src/main/resources/fregels`.
 2. Change the version of Frege/FregeLS
    in [Versions.kt](/src/main/kotlin/ch/fhnw/fregeintellijplugin/lspserver/Versions.kt) and in this Readme.
 3. Commit & Push
